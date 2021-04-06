@@ -1,0 +1,33 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: '2.2'
+metadata:
+  name: iw29-mobile-table
+type: application
+
+framework:
+  name: SAPUI5
+  version: "1.81.1"
+
+  libraries:
+    - name: sap.m
+    - name: sap.ui.core
+    - name: sap.ndc
+    - name: themelib_sap_belize
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          url: https://iccsrm.sap.com:44300
+          client: "100"
+        app:
+          name: ZKK_UI5_APLT
+          description: Test UI5 applet
+          package: $TMP
+          transport: ""

@@ -12,3 +12,13 @@ framework:
     - name: sap.ui.core
     - name: sap.ndc
     - name: themelib_sap_belize
+
+server:
+  customMiddleware:
+  - name: fiori-tools-proxy
+    afterMiddleware: compression
+    configuration:
+      backend:
+      - path: /sap
+        url: https://iccsrm.sap.com:44300
+        client: "100"
